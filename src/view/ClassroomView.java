@@ -19,8 +19,9 @@ public class ClassroomView {
         System.out.println("2. Create new classroom");
         System.out.println("3. Edit classroom");
         System.out.println("4. Delete");
+        System.out.println("5. Back");
 
-        int choice = -1;
+        int choice = 0;
 
         try {
             choice = Integer.parseInt(sc.nextLine());
@@ -42,7 +43,10 @@ public class ClassroomView {
             case 4:
                 this.formDeleteClassroom();
                 break;
-
+            case 5:
+                return;
+            default:
+                System.out.println("Invalid choice");
         }
         menu();
     }
@@ -81,6 +85,7 @@ public class ClassroomView {
     }
 
     private void formEditClassroom() {
+        showListClassroom();
         System.out.println("Enter id classroom to edit");
         int idEdit = -1;
 
@@ -97,7 +102,7 @@ public class ClassroomView {
             System.out.println("Classroom not found");
         } else {
             System.out.println("Enter new name");
-            String newName= "";
+            String newName = "";
             boolean check = true;
             while (check) {
                 check = false;
@@ -110,7 +115,7 @@ public class ClassroomView {
                     }
                 }
             }
-           
+
             Classroom newClassroom = new Classroom(idEdit, newName);
             classroomController.editClassroom(newClassroom);
             showListClassroom();

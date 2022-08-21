@@ -18,4 +18,16 @@ public class StudentController {
         studentService.save(student);
     }
 
+    public Student getStudent(int idEdit) {
+        return studentService.findById(idEdit);
+    }
+
+    public void editStudent(Student student) {
+        studentService.edit(student);
+    }
+
+    public void deleteStudent(int idDelete) {
+        studentService.remove(idDelete);
+    }
+
 }

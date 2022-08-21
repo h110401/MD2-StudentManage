@@ -1,5 +1,6 @@
 package service.classroom;
 
+import config.Config;
 import model.Classroom;
 
 import java.util.ArrayList;
@@ -7,12 +8,17 @@ import java.util.List;
 
 public class ClassroomServiceIMPL implements IClassroomService {
 
-    static List<Classroom> classroomList = new ArrayList<>();
+    static String PATH = "src/data/classroomList.txt";
 
-    static {
-        classroomList.add(new Classroom(1, "JV062022"));
-        classroomList.add(new Classroom(2, "JS072022"));
-    }
+    static Config<List<Classroom>> config = new Config<>();
+    static List<Classroom> classroomList = config.read(PATH);
+
+//    static {
+//        classroomList.add(new Classroom(1, "JV062022"));
+//        classroomList.add(new Classroom(2, "JS072022"));
+//
+//        config.write(classroomList, PATH);
+//    }
 
     @Override
     public List<Classroom> findAll() {

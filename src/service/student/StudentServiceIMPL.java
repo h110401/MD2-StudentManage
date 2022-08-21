@@ -1,22 +1,27 @@
 package service.student;
 
+import config.Config;
 import model.Classroom;
 import model.Student;
 import service.classroom.ClassroomServiceIMPL;
-import service.classroom.IClassroomService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentServiceIMPL implements IStudentService {
 
-    static List<Student> studentList = new ArrayList<>();
+    static String PATH = "src/data/studentList.txt";
+    static Config<List<Student>> config = new Config<>();
+    static List<Student> studentList = config.read(PATH);
 
-    static {
-        List<Classroom> classroomList = new ClassroomServiceIMPL().findAll();
-        studentList.add(new Student(1, "Hung", 19, classroomList.get(0)));
-        studentList.add(new Student(2, "Khanh", 18, classroomList.get(1)));
-    }
+//    static {
+//        List<Classroom> classroomList = new ClassroomServiceIMPL().findAll();
+//        studentList.add(new Student(1, "Hung", 19, classroomList.get(0)));
+//        studentList.add(new Student(2, "Khanh", 18, classroomList.get(1)));
+//
+//        config.write(studentList, PATH);
+//
+//    }
 
     @Override
     public List<Student> findAll() {
@@ -26,6 +31,7 @@ public class StudentServiceIMPL implements IStudentService {
     @Override
     public void save(Student student) {
         studentList.add(student);
+        config.write(studentList, PATH);
     }
 
     @Override
@@ -38,6 +44,16 @@ public class StudentServiceIMPL implements IStudentService {
 
     @Override
     public void remove(int id) {
-        studentList.remove(findById(id));
+        Student removeStudent = findById(id);
+        studentList.remove(removeStudent);
+        config.write(studentList, PATH);
+    }
+
+    public void edit(Student student) {
+        Student studentEdit = findById(student.getId());
+        studentEdit.setName(student.getName());
+        studentEdit.setAge(student.getAge());
+        studentEdit.setClassroom(student.getClassroom());
+        config.write(studentList, PATH);
     }
 }

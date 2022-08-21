@@ -2,7 +2,7 @@
     Viết chương trình quản lý học viên cho Rikkei Academy
 
                              |
-    Model --> Service        |               /------>  View
+  Model --> Service          |               /------>  View
               \              |              /
                \             |             /
                 \----->  Controller  -----/
