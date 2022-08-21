@@ -1,0 +1,30 @@
+
+    Viết chương trình quản lý học viên cho Rikkei Academy
+
+                             |
+    Model --> Service        |               /------>  View
+              \              |              /
+               \             |             /
+                \----->  Controller  -----/
+
+    Model:
+
+        Student,  Classroom
+
+        Student có :    id
+                        name
+                        age
+                        Classroom
+
+        Classroom có :  id
+                        name             done
+
+    Service :  Có interface generic, interface service, Có list và các thao tác với list
+
+    View :  Có lựa chọn menu quản lý classroom hoặc student
+            Làm chức năng hiển thị danh sách, thêm, sửa, xoá, tìm kiếm theo tên,... cho classroom
+            Làm chức năng hiển thị danh sách, thêm, sửa, xoá, tìm kiếm theo tên,... cho student
+            Khi tạo student thì hiển thị danh sách classroom để thêm vào
+            Khi sửa classroom của student thì hiển thị danh sách classroom để chọn
+
+    Controller : chứa những phương thức để kết nối view và model
